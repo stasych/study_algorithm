@@ -3,9 +3,16 @@ __author__ = 'Stas'
 import time
 import winsound
 from collections import namedtuple
+import argparse
 
 if __name__ == '__main__':
-    timer_period = 60*30
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-n', '--timer_period')
+
+    args = parser.parse_args()
+
+    timer_period = int(args.timer_period)
 
     Note = namedtuple('Note',['freq','dur'])
 
