@@ -4,8 +4,8 @@ https://www.hackerrank.com/challenges/insertionsort1
 '''
 __author__ = 'Stas'
 
-def sort_last(ar):
-    n = len(ar)
+def sort_last(ar,sub_len):
+    n = sub_len
     v = ar[n-1]
     print 'Begin sorting...'
     for i in xrange(0,n):
@@ -21,5 +21,7 @@ def sort_last(ar):
 if __name__ == '__main__':
     s = input()
     ar = [int(i) for i in raw_input().strip().split(' ')]
-    sort_last(ar)
-    print ' '.join(map(str,ar))
+    for i in xrange(1,s):
+        sort_last(ar,i+1)
+        print '****',i+1
+        print ' '.join(map(str,ar))

@@ -22,7 +22,7 @@ if __name__ == '__main__':
 
     A_dies= Note(freq=932,dur=300)
 
-
+    print 'Timer starts with period:',timer_period,'seconds'
     while 1:
         winsound.Beep(E.freq,E.dur)
         winsound.Beep(G.freq,G.dur)
