@@ -7,18 +7,44 @@ __author__ = 'Stas'
 def partition(ar):
     l = []
     r = []
+    p = ar[0]
 
     for x in ar:
-        if x<ar[0]:
+        if x<p:
             l.append(x)
-        else:
+        elif x>p:
             r.append(x)
-    l.extend(r)
-    print ' '.join(map(str,l))
+
+    return l,r,p
+
+def quickSort(ar):
+
+    if len(ar) == 1:
+        return ar
+
+
+    l,r,p = partition(ar)
+
+    rez = []
+    if l:
+        print ' '.join(map(str,l))
+        rez.extend( quickSort(l))
+
+    if r:
+        print ' '.join(map(str,r))
+        rez.extend( quickSort(r))
+
+    return rez
+
+
+
+
+
 
 if __name__ == '__main__':
     n = input()
     ar = map(int,raw_input().split())
 
-    partition(ar)
+    rez = quickSort(ar)
+    print rez
 

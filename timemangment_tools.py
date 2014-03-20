@@ -4,6 +4,7 @@ import time
 import winsound
 from collections import namedtuple
 import argparse
+import datetime
 
 if __name__ == '__main__':
 
@@ -22,7 +23,7 @@ if __name__ == '__main__':
 
     A_dies= Note(freq=932,dur=300)
 
-    print 'Timer starts with period:',timer_period,'seconds'
+    print 'Timer starts with period:',timer_period,'seconds at',datetime.datetime.now()
     while 1:
         winsound.Beep(E.freq,E.dur)
         winsound.Beep(G.freq,G.dur)
@@ -39,4 +40,5 @@ if __name__ == '__main__':
         winsound.Beep(G.freq,G.dur)
         winsound.Beep(E.freq,A.dur)
 
+        print datetime.datetime.now()
         time.sleep(timer_period)
