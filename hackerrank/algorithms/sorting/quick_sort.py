@@ -24,20 +24,14 @@ def quickSort(ar):
 
 
     l,r,p = partition(ar)
-
     rez = []
     if l:
-        print ' '.join(map(str,l))
-        rez.extend( quickSort(l))
-
+        rez.extend(quickSort(l))
+    rez.append(p)
     if r:
-        print ' '.join(map(str,r))
-        rez.extend( quickSort(r))
-
+        rez.extend(quickSort(r))
+    print ' '.join(map(str,rez))
     return rez
-
-
-
 
 
 
@@ -46,5 +40,3 @@ if __name__ == '__main__':
     ar = map(int,raw_input().split())
 
     rez = quickSort(ar)
-    print rez
-
