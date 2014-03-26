@@ -24,32 +24,32 @@ def max_mode_unsorded(ar):
 def max_mode(ar):
     '''
     Если массив чисел отсортирован
-    Сложность: O(n)
+    Сложность: O(С)
     Память: O(1)
-    '''
-    current_M = ar[0]
-    current_n = 0
 
-    max_n = 0
+    по массиву можно двигаться с шагом max_n
+    '''
+    current_n = 1
+    current_index = 1
+    current_M = ar[0]
+
+    max_n = 1
     max_M = ar[0]
 
-    for x in ar:
-        if x == current_M:
-            current_n += 1
+    while current_index >= len(ar):
+        # достингнут элемент >= максимального
+        if ar[current_index] == current_M:
+            max_n +=1
+            max_M = current_M
+            current_index += 1
+            continue
+        # текущий сменился
         else:
-            if max_n <= current_n:
-                # x сменилось
-                max_n = current_n
-                max_M = current_M
-
-            #обнуляем
-            current_n = 1
-            current_M = x
-
-    # для последнего элемента
-    if max_n < current_n:
-        current_n = current_n
-        max_M = current_M
+            current_M = ar[current_index]
+            current_index = current_index +max_n
+            for j in range(0,max_n):
+                if ar[current_index-j] == current_M:
+                    current_index -= 1
 
     return max_M
 
