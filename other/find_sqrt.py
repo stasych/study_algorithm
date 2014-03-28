@@ -4,7 +4,7 @@
 '''
 __author__ = 'Stas'
 
-def find_root_sqrt(A):
+def find_root_sqrt(A,bottom_limit=1,top_limit=2147483647):
     j = A
     i = A-1
 
@@ -12,8 +12,12 @@ def find_root_sqrt(A):
     rez_j = -1
 
     exclude_digits = [2,3,7,8]
-
+    n = 0
     while True:
+        n += 1
+        if j > top_limit:
+            break
+
         if j%10 in exclude_digits:
             i = A-1
             j += 1
@@ -31,13 +35,13 @@ def find_root_sqrt(A):
                 rez_j = rez_i+1
                 break
 
-        if i == 1:
+        if i == bottom_limit:
             i = A-1
             j += 1
             continue
 
         i -= 1
-
+    print 'n=',A,' count=',n
     return (rez_i,rez_j)
 
 
@@ -55,11 +59,11 @@ if __name__ == '__main__':
     # сдледует из (а+1)^2 - a^2 = 2a+1 = j-i
 
 
-    A,B = 8,8
+    A,B = 9560,100000
 
-    rez_A_l,rez_A_r =  find_root_sqrt(A)
+    rez_A_l,rez_A_r =  find_root_sqrt(A,top_limit=B)
     print rez_A_l,rez_A_r
-    rez_B_l,rez_B_r =  find_root_sqrt(B)
+    rez_B_l,rez_B_r =  find_root_sqrt(B,bottom_limit=A)
     print rez_B_l,rez_B_r
 
     N = rez_B_r - rez_A_r
