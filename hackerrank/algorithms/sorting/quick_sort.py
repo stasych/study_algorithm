@@ -35,48 +35,60 @@ def quickSort(ar):
     return rez
 
 def true_partition(ar,l,r):
+    '''
+    выполняет перестановку в ar[l+1,r], что вначале идут все < ar[l],
+    а потом все > ar[l]
+    возвращает индекс для ar[l] (pivot)
+    '''
     v = ar[l]
     i = l+1
     j = r
     while 1:
 
-        while ar[i] > v:
+        while ar[i] < v:
             i +=1
-            break
 
-        while ar[j] < v:
+
+        while ar[j] > v:
             j -= 1
-            break
 
         if i >= j:
             break
 
         r = ar[i]
-        ar[j] = ar[i]
-        ar[i] = r
+        ar[i] = ar[j]
+        ar[j] = r
+
+
+    ar[l] = ar[i-1]
+    ar[i-1] = v
+
+    return i-1
 
 
 
-    return i
+def true_quicksort(ar,l,r):
+    '''
+    классический квиксорт
+    '''
+    if len(ar[l:r]) == 1:
+        print '*ar[pivot]=',ar[l],'pivot=',l,ar
+        return
 
-
-
-def true_quicksort(ar):
-    if len(ar) == 1:
-        return ar[0]
-
-    i = true_partition(ar,0,len(ar)-1)
-    true_quicksort(ar[:i-1])
-    true_quicksort(ar[i+1:])
+    i = true_partition(ar,l,r)
+    print 'ar[pivot]=',ar[i],'pivot=',i,ar
+    true_quicksort(ar,l,i-1)
+    print 'go to right',i,l,r
+    true_quicksort(ar,i+1,r)
 
     return
 
 
 
 if __name__ == '__main__':
-    n = input()
-    ar = map(int,raw_input().split())
+    n = 7
+    ar = [5,8,1,3,7,9,2]
 
-    #rez = quickSort(ar)
+    true_quicksort(ar,0,n-1)
 
     print ' '.join(map(str,ar))
