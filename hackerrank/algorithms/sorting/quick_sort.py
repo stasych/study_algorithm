@@ -39,4 +39,6 @@ if __name__ == '__main__':
     n = input()
     ar = map(int,raw_input().split())
 
-    rez = quickSort(ar)
+    #rez = quickSort(ar)
+
+    print ' '.join(map(str,ar))
