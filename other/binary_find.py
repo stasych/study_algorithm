@@ -12,26 +12,29 @@ def binary_search(ar,z):
     '''
     rez = None
 
-    if ar[0] == z:
-        return 0
-    if ar[-1] == z:
-        return len(ar)-1
-
-    n = len(ar)
+    n = len(ar)-1
     first = 0
-    i = n-1-first+1/2
 
+    # n-first+1 - количество элементов
+    i = first + (n-first+1)/2 - 1 if (n-first+1)%2 == 0 else first + (n-first+1)/2
 
-    while not( i==0 or i == n):
-        if ar[i] > z:
-            n = i-1
-            i = n-1-first+1/2
-        elif ar[i]<z:
-            first = i+1
-            i = n-1-first+1/2
-        elif ar[i] == z:
+    while not( i== first or i==n ):
+        if ar[i] == z:
             rez = i
             break
+
+        if ar[i] > z:
+            n = i-1
+        else:
+            first = i+1
+
+        i = first+(n-first+1)/2 - 1 if (n-first+1)%2 == 0 else first + (n-first+1)/2
+
+    if ar[first] == z:
+        return first
+    if ar[n] == z:
+        return n
+
     return rez
 
 if __name__ == '__main__':
@@ -42,19 +45,33 @@ if __name__ == '__main__':
     rez = binary_search(lst,fisrt)
     print 'case 1: first element'
     print 'rez i=',rez,'rez value:',lst[rez]
+    print
 
     # case 2: middle element
     middle = 15
     rez = binary_search(lst,middle)
     print 'case 3: middle element'
     print 'rez i=',rez,'rez value:',lst[rez]
+    print
 
     # case 3: last element
     last = 20
     rez = binary_search(lst,last)
     print 'case 3: last element'
     print 'rez i=',rez,'rez value:',lst[rez]
+    print
 
     # case 4: wrong param
+    wrong = 11
+    rez = binary_search(lst,wrong)
+    print 'case 4: worng element'
+    print 'rez i=',rez
+    print
 
     # case 5: dubles
+    dbl_lst = [10,11,11,12,13,14,15,15,16,17,18,20]
+    dbl_element = 11
+    rez = binary_search(dbl_lst,dbl_element)
+    print 'case 5: dbl element'
+    print 'rez i=',rez,'rez value',dbl_lst[rez]
+    print
